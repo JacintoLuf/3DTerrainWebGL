@@ -411,14 +411,166 @@ function animate() {
 	lastTime = timeNow;
 }
 
+//----------------------------------------------------------------------------
+
+// Handling keyboard events
+
+// Adapted from www.learningwebgl.com
+
+var currentlyPressedKeys = {};
+
+function handleKeys() {
+	
+	if (currentlyPressedKeys[33]) {
+		
+		// Page Up
+
+		// For every model
+		
+		for ( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].sx *= 0.9; 
+
+			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
+		}
+		
+	}
+	if (currentlyPressedKeys[34]) {
+		
+		// Page Down
+		
+		// For every model
+		
+		for ( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].sx *= 1.1; 
+
+			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
+		}
+		
+	}
+	if (currentlyPressedKeys[37]) {
+		
+		// Left cursor key
+		
+		// For every model
+		
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed -= 0.25; 
+		}
+
+	}
+	if (currentlyPressedKeys[39]) {
+		
+		// Right cursor key
+		
+		// For every model
+		
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed += 0.25; 
+		}
+
+	}
+	if (currentlyPressedKeys[38]) {
+		
+		// Up cursor key
+		
+		// For every model
+		
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed -= 0.25; 
+		}
+
+	}
+	if (currentlyPressedKeys[40]) {
+		
+		// Down cursor key
+		
+		// For every model
+		
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed += 0.25; 
+		}
+
+	}
+}
 
 //----------------------------------------------------------------------------
+
+// Handling mouse events
+
+// Adapted from www.learningwebgl.com
+
+var mouseDown = false;
+
+var lastMouseX = null;
+
+var lastMouseY = null;
+
+function handleMouseDown(event) {
+	
+    mouseDown = true;
+  
+    lastMouseX = event.clientX;
+  
+    lastMouseY = event.clientY;
+}
+
+function handleMouseUp(event) {
+
+    mouseDown = false;
+}
+
+function handleMouseMove(event) {
+
+    if (!mouseDown) {
+	  
+      return;
+    } 
+  
+    // Rotation angles proportional to cursor displacement
+    
+    var newX = event.clientX;
+  
+    var newY = event.clientY;
+
+    var deltaX = newX - lastMouseX;
+	
+	// For every model
+		
+	for( var i = 0; i < sceneModels.length; i++ )
+	{
+		sceneModels[i].tx += radians( 0.3 * deltaX  ); 
+	}
+
+	var deltaY = newY - lastMouseY;
+	
+	// For every model
+		
+	for( var i = 0; i < sceneModels.length; i++ )
+	{
+		sceneModels[i].ty -= radians( 0.3 * deltaY  ); 
+	}
+    
+    lastMouseX = newX
+    
+    lastMouseY = newY;
+  }
+
+//----------------------------------------------------------------------------
+
 
 // Timer
 
 function tick() {
 	
 	requestAnimFrame(tick);
+
+	handleKeys();
 	
 	drawScene();
 	
@@ -437,7 +589,35 @@ function outputInfos(){
 
 //----------------------------------------------------------------------------
 
-function setEventListeners(){
+function setEventListeners( canvas ){
+
+	// NEW ---Handling the mouse
+	
+	// From learningwebgl.com
+
+    canvas.onmousedown = handleMouseDown;
+    
+    document.onmouseup = handleMouseUp;
+    
+    document.onmousemove = handleMouseMove;
+    
+    // NEW ---Handling the keyboard
+	
+	// From learningwebgl.com
+
+    function handleKeyDown(event) {
+		
+        currentlyPressedKeys[event.keyCode] = true;
+    }
+
+    function handleKeyUp(event) {
+		
+        currentlyPressedKeys[event.keyCode] = false;
+    }
+
+	document.onkeydown = handleKeyDown;
+    
+    document.onkeyup = handleKeyUp;
 	
     // Dropdown list
 	
@@ -708,7 +888,7 @@ function runWebGL() {
 
 	shaderProgram = initShaders( gl );
 	
-	setEventListeners();
+	setEventListeners( canvas );
 	
 	tick();		// A timer controls the rendering / animation    
 
