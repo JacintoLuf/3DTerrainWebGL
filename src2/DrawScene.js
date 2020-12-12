@@ -16,7 +16,7 @@ function drawScene() {
 		
 		// For now, the default orthogonal view volume
 		
-		pMatrix = ortho( -1.0, 1.0, -1.0, 1.0, -100.0, 100.0 );
+		pMatrix = ortho( -1.0, 1.0, -1.0, 1.0, -10.0, 1.0 );
 		
 		// Global transformation !!
 		

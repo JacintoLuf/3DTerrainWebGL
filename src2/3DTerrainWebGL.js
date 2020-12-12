@@ -19,6 +19,7 @@
 //
 
 var base_url = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/14/12558/6127.pngraw?access_token='
+var base_url2 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/0/0/0.pngraw?access_token='
 
 var key = "pk.eyJ1IjoibHVmZiIsImEiOiJja2k0dXNsY3UyZWhuMnNsdDJ2Y2hxOGZsIn0.NBXBwoqeK4OT-Gtm4L_5QQ"
 
@@ -190,6 +191,25 @@ function tick() {
 	handleKeys();
 	
 	drawScene();
+
+	console.log(sceneModels[0].tx);
+	console.log(sceneModels[0].ty);
+	console.log(sceneModels[0].tz);
+	console.log(sceneModels[0].rotAngleXX);
+	console.log(sceneModels[0].rotAngleYY);
+	console.log(sceneModels[0].rotAngleZZ);
+	console.log(sceneModels[0].sx);
+	console.log(sceneModels[0].sy);
+	console.log(sceneModels[0].sz);
+	console.log(sceneModels[0].rotXXOn);
+	console.log(sceneModels[0].rotYYOn);
+	console.log(sceneModels[0].rotZZOn);
+	console.log(sceneModels[0].rotXXSpeed);
+	console.log(sceneModels[0].rotYYSpeed);
+	console.log(sceneModels[0].rotZZSpeed);
+	console.log(sceneModels[0].rotXXDir);
+	console.log(sceneModels[0].rotYYDir);
+	console.log(sceneModels[0].rotZZDir);
 	
 	animate();
 }
@@ -234,13 +254,13 @@ function initWebGL( canvas ) {
 		
 		// Enable FACE CULLING
 		
-		//gl.enable( gl.CULL_FACE );
+		gl.enable( gl.CULL_FACE );
 		
 		// DEFAULT: The BACK FACE is culled!!
 		
 		// The next instruction is not needed...
 		
-		//gl.cullFace( gl.BACK );
+		gl.cullFace( gl.BACK );
 		
 		// Enable DEPTH-TEST
 		
@@ -258,6 +278,8 @@ function initWebGL( canvas ) {
 function runWebGL() {
 	
 	var canvas = document.getElementById("my-canvas");
+	//canvas.width = document.body.clientWidth;
+	//canvas.height = document.body.clientHeight;
 	
 	initWebGL( canvas );
 

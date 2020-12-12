@@ -6,7 +6,7 @@ var currentlyPressedKeys = {};
 
 function handleKeys() {
 	
-	if (currentlyPressedKeys[33]) {
+	if (currentlyPressedKeys[38]) {
 		
 		// Page Up
 
@@ -20,7 +20,7 @@ function handleKeys() {
 		}
 		
 	}
-	if (currentlyPressedKeys[34]) {
+	if (currentlyPressedKeys[40]) {
 		
 		// Page Down
 		
@@ -34,7 +34,7 @@ function handleKeys() {
 		}
 		
 	}
-	if (currentlyPressedKeys[37]) {
+	if (currentlyPressedKeys[65]) {
 		
 		// Left cursor key
 		
@@ -42,11 +42,11 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].rotYYSpeed -= 0.25; 
+			sceneModels[i].tx -= 0.005; 
 		}
 
 	}
-	if (currentlyPressedKeys[39]) {
+	if (currentlyPressedKeys[68]) {
 		
 		// Right cursor key
 		
@@ -54,11 +54,11 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].rotYYSpeed += 0.25; 
+			sceneModels[i].tx += 0.005; 
 		}
 
 	}
-	if (currentlyPressedKeys[38]) {
+	if (currentlyPressedKeys[87]) {
 		
 		// Up cursor key
 		
@@ -66,11 +66,11 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].rotXXSpeed -= 0.25; 
+			sceneModels[i].ty += 0.005; 
 		}
 
 	}
-	if (currentlyPressedKeys[40]) {
+	if (currentlyPressedKeys[83]) {
 		
 		// Down cursor key
 		
@@ -78,10 +78,31 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].rotXXSpeed += 0.25; 
+			sceneModels[i].ty -= 0.005; 
 		}
 
 	}
+	// if (currentlyPressedKeys[82]) {
+	// 	//r key to reset
+	// 	sceneModels[0].tx = 0.0;
+	// 	sceneModels[0].ty = 0.0;
+	// 	sceneModels[0].tz = 0.0;	
+	// 	sceneModels[0].rotAngleXX = 0.0;
+	// 	sceneModels[0].rotAngleYY = 0.0;
+	// 	sceneModels[0].rotAngleZZ = 0.0;
+	// 	sceneModels[0].sx = 1.0;
+	// 	sceneModels[0].sy = 1.0;
+	// 	sceneModels[0].sz = 1.0;		
+	// 	sceneModels[0].rotXXOn = true;
+	// 	sceneModels[0].rotYYOn = true;
+	// 	sceneModels[0].rotZZOn = true;
+	// 	sceneModels[0].rotXXSpeed = 0.0;
+	// 	sceneModels[0].rotYYSpeed = 0.0;
+	// 	sceneModels[0].rotZZSpeed = 0.0;
+	// 	sceneModels[0].rotXXDir = 1;
+	// 	sceneModels[0].rotYYDir = 1;
+	// 	sceneModels[0].rotZZDir = 1;
+	// }
 }
 
 //----------------------------------------------------------------------------
