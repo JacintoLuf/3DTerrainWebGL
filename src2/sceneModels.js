@@ -54,11 +54,11 @@ function emptyModelFeatures() {
 	
 	this.rotZZOn = true;
 	
-	this.rotXXSpeed = 1.0;
+	this.rotXXSpeed = 0.0;
 	
-	this.rotYYSpeed = 1.0;
+	this.rotYYSpeed = 0.0;
 	
-	this.rotZZSpeed = 1.0;
+	this.rotZZSpeed = 0.0;
 	
 	this.rotXXDir = 1;
 	

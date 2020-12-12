@@ -544,7 +544,7 @@ function handleMouseMove(event) {
 		
 	for( var i = 0; i < sceneModels.length; i++ )
 	{
-		sceneModels[i].tx += radians( 0.3 * deltaX  ); 
+		sceneModels[i].rotYYSpeed = radians( 5.0 * deltaX );
 	}
 
 	var deltaY = newY - lastMouseY;
@@ -553,7 +553,7 @@ function handleMouseMove(event) {
 		
 	for( var i = 0; i < sceneModels.length; i++ )
 	{
-		sceneModels[i].ty -= radians( 0.3 * deltaY  ); 
+		sceneModels[i].rotXXSpeed = radians( 5.0 * deltaY );
 	}
     
     lastMouseX = newX
