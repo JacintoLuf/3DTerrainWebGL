@@ -234,13 +234,13 @@ function initWebGL( canvas ) {
 		
 		// Enable FACE CULLING
 		
-		gl.enable( gl.CULL_FACE );
+		//gl.enable( gl.CULL_FACE );
 		
 		// DEFAULT: The BACK FACE is culled!!
 		
 		// The next instruction is not needed...
 		
-		gl.cullFace( gl.BACK );
+		//gl.cullFace( gl.BACK );
 		
 		// Enable DEPTH-TEST
 		

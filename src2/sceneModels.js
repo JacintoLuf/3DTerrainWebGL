@@ -80,14 +80,14 @@ function emptyModelFeatures() {
 function terrain(url){
 	var terrain = new emptyModelFeatures();
 	terrain.vertices  = [
-			-1.0, -1.0,  0.0,
-			1.0, -1.0,  0.0,
-			1.0,  1.0,  0.0,
-			1.0,  1.0,  0.0,
-			-1.0,  1.0,  0.0,
-			-1.0, -1.0,  0.0,
+		-0.99, -0.99,  0.0,
+		 0.99, -0.99,  0.0,
+		 0.99,  0.99,  0.0,
+		 0.99,  0.99,  0.0,
+		-0.99,  0.99,  0.0,
+		-0.99, -0.99,  0.0,
 	];
-	midPointRefinement( terrain.vertices, 5 );
+	midPointRefinement( terrain.vertices, 6 );
 	computeVertexNormals( terrain.vertices, terrain.normals );
 	var canvas = document.createElement('canvas');
 	var img = new Image();
@@ -98,12 +98,12 @@ function terrain(url){
 		var context = canvas.getContext('2d');
 		context.drawImage( img, 0, 0);
 		var ctx = canvas.getContext('2d');
-		var rgba = ctx.getImageData(0, 0, 256, 256).data;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			var y = ((terrain.vertices[i+1]+1)/2)*256;
-			var idx = (y*256+x)*4;
-			terrain.vertices[i+2] = (-1000 + ((rgba[idx] * 256 * 256 + rgba[idx+1] * 256 + rgba[idx+2]) * 0.1))/16842008;
+			var rgba = ctx.getImageData(x, y, 1, 1).data;
+			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/1000;
+			terrain.vertices[i+2] = height;
 			if(isNaN(terrain.vertices[i+2])) terrain.vertices[i+2] = 0;
 		}
 	}
@@ -114,11 +114,19 @@ function terrain(url){
 
 //----------------------------------------------------------------------------
 //
+// var rgba = ctx.getImageData(0, 0, 256, 256).data;
+// 		for(var i=0; i<terrain.vertices.length; i+=3){
+// 			var x = ((terrain.vertices[i]+1)/2)*256;
+// 			var y = ((terrain.vertices[i+1]+1)/2)*256;
+// 			var idx = (y*x)*4;
+// 			var height = (-1000 + ((rgba[idx] * 256 * 256 + rgba[idx+1] * 256 + rgba[idx+2]) * 0.1))/10000;
+// 			terrain.vertices[i+2] = height;
+// 			if(isNaN(terrain.vertices[i+2])) terrain.vertices[i+2] = 0;
+// 		}
 //  Instantiating scene models
 //
 
 var sceneModels = [];
 
 sceneModels.push( new terrain(base_url+key));
-
 sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
