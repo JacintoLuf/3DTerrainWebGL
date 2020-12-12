@@ -204,10 +204,11 @@ The fragment shader is the same simple one.
 		
 		gl_FragColor = fColor;
 	}
-
+	
 </script>
 
 <!-- The JS files -->
+<script type="text/javascript" src="3DTerrainWebGL.js"></script>
 
 <!-- Some useful functions for browser compatibility -->
 
@@ -233,7 +234,16 @@ The fragment shader is the same simple one.
 
 <script type="text/javascript" src="initShaders.js"></script>
 
-<script type="text/javascript" src="3DTerrainWebGL.js"></script>
+<script type="text/javascript" src="initBuffers.js"></script>
+
+<script type="text/javascript" src="DrawModel.js"></script>
+
+<script type="text/javascript" src="DrawScene.js"></script>
+
+<script type="text/javascript" src="handleKeys.js"></script>
+
+<script type="text/javascript" src="setEventListeners.js"></script>
+
 
 </head>
 
@@ -243,7 +253,7 @@ The fragment shader is the same simple one.
 		
 		<p>Model animation with several light sources - Per Vertex Shading on the GPU</p>
 		
-		<canvas id="my-canvas" style="border:1px solid #000000;" width="350" height="350"></canvas>
+		<canvas id="my-canvas" style="border:1px solid #000000;" width="512" height="512"></canvas>
 		
 		<!-- NEW --- To show the number of frames per second -->
 		
