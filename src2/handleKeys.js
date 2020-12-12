@@ -128,8 +128,8 @@ function handleMouseMove(event) {
 	// For every model
 		
 	for( var i = 0; i < sceneModels.length; i++ )
-	{
-		sceneModels[i].rotYYSpeed = radians( 5.0 * deltaX );
+	{ 
+		sceneModels[i].rotAngleYY += radians( 5.0 * deltaX );
 	}
 
 	var deltaY = newY - lastMouseY;
@@ -138,7 +138,12 @@ function handleMouseMove(event) {
 		
 	for( var i = 0; i < sceneModels.length; i++ )
 	{
-		sceneModels[i].rotXXSpeed = radians( 5.0 * deltaY );
+		sceneModels[i].rotAngleXX += radians( 5.0 * deltaY );
+
+		if ( sceneModels[i].rotAngleXX > 90.0 ) 
+			{
+				sceneModels[i].rotAngleXX = 90.0
+			}
 	}
     
     lastMouseX = newX

@@ -77,18 +77,53 @@ function emptyModelFeatures() {
 	this.nPhong = 100;
 }
 
-function terrain(url){
-	var terrain = new emptyModelFeatures();
-	terrain.vertices  = [
-		-0.99, -0.99,  0.0,
-		 0.99, -0.99,  0.0,
-		 0.99,  0.99,  0.0,
-		 0.99,  0.99,  0.0,
-		-0.99,  0.99,  0.0,
-		-0.99, -0.99,  0.0,
+
+function simplePlane( ) {
+	
+	var plane = new emptyModelFeatures();
+	
+	plane.vertices = [
+		-2.000000,  1.000000, -2.000000, 
+		-2.000000,  0.000000,  2.000000, 
+		 2.000000,  1.000000, -2.000000, 
+		-2.000000,  0.000000,  2.000000, 
+		 2.000000,  0.000000,  2.000000, 
+		 2.000000,  1.000000, -2.000000, 	 
 	];
-	midPointRefinement( terrain.vertices, 6 );
-	computeVertexNormals( terrain.vertices, terrain.normals );
+
+	computeVertexNormals( plane.vertices, plane.normals );
+
+	return plane;
+}
+
+
+function planeModel( subdivisionDepth = 5 ) {
+	
+	var plane = new simplePlane();
+	
+	midPointRefinement( plane.vertices, subdivisionDepth );
+	
+	computeVertexNormals( plane.vertices, plane.normals );
+	
+	return plane;
+}
+
+
+function terrain(url){
+	// var terrain = new emptyModelFeatures();
+	// terrain.vertices  = [
+	// 	-0.99, -0.99,  0.0,
+	// 	 0.99, -0.99,  0.0,
+	// 	 0.99,  0.99,  0.0,
+	// 	 0.99,  0.99,  0.0,
+	// 	-0.99,  0.99,  0.0,
+	// 	-0.99, -0.99,  0.0,
+	// ];
+	// midPointRefinement( terrain.vertices, 6 );
+	// computeVertexNormals( terrain.vertices, terrain.normals );
+
+	var terrain = new planeModel( 6 )
+
 	var canvas = document.createElement('canvas');
 	var img = new Image();
 	img.crossOrigin = "Anonymous";
@@ -103,7 +138,7 @@ function terrain(url){
 			var y = ((terrain.vertices[i+1]+1)/2)*256;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/1000;
-			terrain.vertices[i+2] = height;
+			terrain.vertices[i+1] = height;
 			if(isNaN(terrain.vertices[i+2])) terrain.vertices[i+2] = 0;
 		}
 	}
@@ -128,5 +163,8 @@ function terrain(url){
 
 var sceneModels = [];
 
-sceneModels.push( new terrain(base_url+key));
-sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+ sceneModels.push( new terrain( base_url + key ) );
+
+ sceneModels[0].tx = 0.0; sceneModels[0].ty = 0;
+
+ sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
