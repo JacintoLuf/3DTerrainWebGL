@@ -9,62 +9,78 @@ function handleKeys() {
 	if (currentlyPressedKeys[33]) {
 		
 		// Page Up
+
+		// For every model
 		
-		sx *= 0.9;
+		for ( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].sx *= 0.9; 
+
+			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
+		}
 		
-		sz = sy = sx;
 	}
 	if (currentlyPressedKeys[34]) {
 		
 		// Page Down
 		
-		sx *= 1.1;
+		// For every model
 		
-		sz = sy = sx;
+		for ( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].sx *= 1.1; 
+
+			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
+		}
+		
 	}
 	if (currentlyPressedKeys[37]) {
 		
 		// Left cursor key
 		
-		if( rotationYY_ON == 0 ) {
-			
-			rotationYY_ON = 1;
-		}  
+		// For every model
 		
-		rotationYY_SPEED -= 0.25;
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed -= 0.25; 
+		}
+
 	}
 	if (currentlyPressedKeys[39]) {
 		
 		// Right cursor key
 		
-		if( rotationYY_ON == 0 ) {
-			
-			rotationYY_ON = 1;
-		}  
+		// For every model
 		
-		rotationYY_SPEED += 0.25;
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed += 0.25; 
+		}
+
 	}
 	if (currentlyPressedKeys[38]) {
 		
 		// Up cursor key
 		
-		if( rotationXX_ON == 0 ) {
-			
-			rotationXX_ON = 1;
-		}  
+		// For every model
 		
-		rotationXX_SPEED -= 0.25;
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed -= 0.25; 
+		}
+
 	}
 	if (currentlyPressedKeys[40]) {
 		
 		// Down cursor key
 		
-		if( rotationXX_ON == 0 ) {
-			
-			rotationXX_ON = 1;
-		}  
+		// For every model
 		
-		rotationXX_SPEED += 0.25;
+		for( var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed += 0.25; 
+		}
+
 	}
 }
 
@@ -73,7 +89,6 @@ function handleKeys() {
 // Handling mouse events
 
 // Adapted from www.learningwebgl.com
-
 
 var mouseDown = false;
 
@@ -109,12 +124,22 @@ function handleMouseMove(event) {
     var newY = event.clientY;
 
     var deltaX = newX - lastMouseX;
-    
-    angleYY += radians( 10 * deltaX  )
+	
+	// For every model
+		
+	for( var i = 0; i < sceneModels.length; i++ )
+	{
+		sceneModels[i].rotYYSpeed = radians( 5.0 * deltaX );
+	}
 
-    var deltaY = newY - lastMouseY;
-    
-    angleXX += radians( 10 * deltaY  )
+	var deltaY = newY - lastMouseY;
+	
+	// For every model
+		
+	for( var i = 0; i < sceneModels.length; i++ )
+	{
+		sceneModels[i].rotXXSpeed = radians( 5.0 * deltaY );
+	}
     
     lastMouseX = newX
     
