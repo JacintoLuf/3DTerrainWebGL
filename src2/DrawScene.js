@@ -112,5 +112,5 @@ function drawScene() {
 	           
 	// NEW - Counting the frames
 	
-	countFrames();
+    countFrames();
 }

@@ -77,68 +77,6 @@ function emptyModelFeatures() {
 	this.nPhong = 100;
 }
 
-
-function simpleCubeModel( ) {
-	
-	var cube = new emptyModelFeatures();
-	
-	cube.vertices = [
-
-		-1.000000, -1.000000,  1.000000, 
-		 1.000000,  1.000000,  1.000000, 
-		-1.000000,  1.000000,  1.000000, 
-		-1.000000, -1.000000,  1.000000,
-		 1.000000, -1.000000,  1.000000, 
-		 1.000000,  1.000000,  1.000000, 
-         1.000000, -1.000000,  1.000000, 
-		 1.000000, -1.000000, -1.000000, 
-		 1.000000,  1.000000, -1.000000, 
-         1.000000, -1.000000,  1.000000, 
-         1.000000,  1.000000, -1.000000, 
-         1.000000,  1.000000,  1.000000, 
-        -1.000000, -1.000000, -1.000000, 
-        -1.000000,  1.000000, -1.000000,
-         1.000000,  1.000000, -1.000000, 
-        -1.000000, -1.000000, -1.000000, 
-         1.000000,  1.000000, -1.000000, 
-         1.000000, -1.000000, -1.000000, 
-        -1.000000, -1.000000, -1.000000, 
-		-1.000000, -1.000000,  1.000000, 
-		-1.000000,  1.000000, -1.000000, 
-		-1.000000, -1.000000,  1.000000, 
-		-1.000000,  1.000000,  1.000000, 
-		-1.000000,  1.000000, -1.000000, 
-		-1.000000,  1.000000, -1.000000, 
-		-1.000000,  1.000000,  1.000000, 
-		 1.000000,  1.000000, -1.000000, 
-		-1.000000,  1.000000,  1.000000, 
-		 1.000000,  1.000000,  1.000000, 
-		 1.000000,  1.000000, -1.000000, 
-		-1.000000, -1.000000,  1.000000, 
-		-1.000000, -1.000000, -1.000000,
-		 1.000000, -1.000000, -1.000000, 
-		-1.000000, -1.000000,  1.000000, 
-		 1.000000, -1.000000, -1.000000, 
-		 1.000000, -1.000000,  1.000000, 	 
-	];
-
-	computeVertexNormals( cube.vertices, cube.normals );
-
-	return cube;
-}
-
-
-function cubeModel( subdivisionDepth = 0 ) {
-	
-	var cube = new simpleCubeModel();
-	
-	midPointRefinement( cube.vertices, subdivisionDepth );
-	
-	computeVertexNormals( cube.vertices, cube.normals );
-	
-	return cube;
-}
-
 function terrain(url){
 	var terrain = new emptyModelFeatures();
 	terrain.vertices  = [
@@ -165,38 +103,12 @@ function terrain(url){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			var y = ((terrain.vertices[i+1]+1)/2)*256;
 			var idx = (y*256+x)*4;
-			terrain.vertices[i+2] = (-1000 + ((rgba[idx] * 256 * 256 + rgba[idx+1] * 256 + rgba[idx+2]) * 0.1))/256*2-1;
+			terrain.vertices[i+2] = (-1000 + ((rgba[idx] * 256 * 256 + rgba[idx+1] * 256 + rgba[idx+2]) * 0.1))/16842008;
 			if(isNaN(terrain.vertices[i+2])) terrain.vertices[i+2] = 0;
 		}
 	}
 	img.src = url;
 	return terrain;
-}
-
-
-function tetrahedronModel( subdivisionDepth = 0 ) {
-	
-	var tetra = new simpleTetrahedronModel();
-	
-	midPointRefinement( tetra.vertices, subdivisionDepth );
-	
-	computeVertexNormals( tetra.vertices, tetra.normals );
-	
-	return tetra;
-}
-
-
-function sphereModel( subdivisionDepth = 2 ) {
-	
-	var sphere = new simpleCubeModel();
-	
-	midPointRefinement( sphere.vertices, subdivisionDepth );
-	
-	moveToSphericalSurface( sphere.vertices )
-	
-	computeVertexNormals( sphere.vertices, sphere.normals );
-	
-	return sphere;
 }
 
 
