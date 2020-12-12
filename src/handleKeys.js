@@ -4,7 +4,7 @@
 
 var currentlyPressedKeys = {};
 
-function handleKeys() {
+function handleKeys(i) {
 	
 	if (currentlyPressedKeys[33]) {
 		

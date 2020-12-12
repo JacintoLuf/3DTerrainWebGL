@@ -335,7 +335,7 @@ function drawScene() {
 		
 		// For now, the default orthogonal view volume
 		
-		pMatrix = ortho( -1.0, 1.0, -1.0, 1.0, -2.0, 2.0 );
+		pMatrix = ortho( -2.0, 2.0, -2.0, 2.0, -5.0, 5.0 );
 		
 		tz = 0;
 		
@@ -425,8 +425,6 @@ function animate() {
 function tick() {
 	
 	requestAnimFrame(tick);
-	
-	// NEW --- Processing keyboard events 
 	
 	//handleKeys();
 	
