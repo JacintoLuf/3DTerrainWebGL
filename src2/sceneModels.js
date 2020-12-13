@@ -83,12 +83,12 @@ function simplePlane( ) {
 	var plane = new emptyModelFeatures();
 	
 	plane.vertices = [
-			-0.99,  0.0,  0.99,
-			 0.99,  0.0,  0.99,
-			 0.99,  0.0, -0.99,
-			 0.99,  0.0, -0.99,
-			-0.99,  0.0, -0.99,
-			-0.99,  0.0,  0.99,
+			-1,  0.0,  1,
+			 1,  0.0,  1,
+			 1,  0.0, -1,
+			 1,  0.0, -1,
+			-1,  0.0, -1,
+			-1,  0.0,  1,
 		];
 
 	computeVertexNormals( plane.vertices, plane.normals );
@@ -110,18 +110,6 @@ function planeModel( subdivisionDepth = 5 ) {
 
 
 function terrain(url){
-	// var terrain = new emptyModelFeatures();
-	// terrain.vertices  = [
-	// 	-0.99, -0.99,  0.0,
-	// 	 0.99, -0.99,  0.0,
-	// 	 0.99,  0.99,  0.0,
-	// 	 0.99,  0.99,  0.0,
-	// 	-0.99,  0.99,  0.0,
-	// 	-0.99, -0.99,  0.0,
-	// ];
-	// midPointRefinement( terrain.vertices, 6 );
-	// computeVertexNormals( terrain.vertices, terrain.normals );
-
 	var terrain = new planeModel( 7 )
 
 	var canvas = document.createElement('canvas');
@@ -133,15 +121,24 @@ function terrain(url){
 		var context = canvas.getContext('2d');
 		context.drawImage(img, 0, 0);
 		var ctx = canvas.getContext('2d');
+		var max = 0;
+		var min = 1;
+		var sum = 0;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
-			var y = ((-terrain.vertices[i+2]+1)/2)*256;
+			if(x==256) x = 255;
+			var y = ((terrain.vertices[i+2]+1)/2)*256;
+			if(y==256) y = 255;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
-			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/1000*0.05-1;
+			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/14960-0.6015374331550802;
 			terrain.vertices[i+1] = height;
+			sum += height;
+			if(height>max) max = height;
+			if(height<max) min = height;
 		}
-		computeVertexNormals( terrain.vertices, terrain.normals );
+		console.log("max: "+String(max)+"\nmin: "+String(min)+"\n avg: "+String(sum/terrain.vertices.length));
 		console.log(terrain.vertices);
+		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
 	img.src = url;
 	return terrain;
