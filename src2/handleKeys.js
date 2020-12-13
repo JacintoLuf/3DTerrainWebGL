@@ -16,7 +16,7 @@ function handleKeys() {
 	    {
 			sceneModels[i].sx *= 1.05;
 
-			//console.log(sceneModels[i].sx);
+			console.log(sceneModels[i].sx);
 
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}
@@ -32,7 +32,7 @@ function handleKeys() {
 	    {
 			sceneModels[i].sx *= 0.95;
 
-			//console.log(sceneModels[i].sx);
+			console.log(sceneModels[i].sx);
 
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}

@@ -20,7 +20,7 @@
 
 var base_url = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/14/12558/6127.pngraw?access_token='
 var base_url2 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/0/0/0.pngraw?access_token='
-var base_url3 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/14/12558/6127.pngraw?access_token='
+var base_url3 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/2/2/1.pngraw?access_token='
 
 var key = "pk.eyJ1IjoibHVmZiIsImEiOiJja2k0dXNsY3UyZWhuMnNsdDJ2Y2hxOGZsIn0.NBXBwoqeK4OT-Gtm4L_5QQ"
 

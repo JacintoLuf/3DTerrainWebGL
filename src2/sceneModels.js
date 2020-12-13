@@ -110,7 +110,7 @@ function planeModel( subdivisionDepth = 5 ) {
 
 
 function terrain(url){
-	var terrain = new planeModel( 7 )
+	var terrain = new planeModel( 8 )
 
 	var canvas = document.createElement('canvas');
 	var img = new Image();
@@ -136,8 +136,8 @@ function terrain(url){
 			if(height>max) max = height;
 			if(height<max) min = height;
 		}
-		console.log("max: "+String(max)+"\nmin: "+String(min)+"\n avg: "+String(sum/terrain.vertices.length));
-		console.log(terrain.vertices);
+		//console.log("max: "+String(max)+"\nmin: "+String(min)+"\n avg: "+String(sum/terrain.vertices.length));
+		//console.log(terrain.vertices);
 		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
 	img.src = url;
@@ -149,5 +149,5 @@ function terrain(url){
 
 var sceneModels = [];
 
-sceneModels.push( new terrain( base_url2 + key ) );
+sceneModels.push( new terrain( base_url3 + key ) );
 // sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
