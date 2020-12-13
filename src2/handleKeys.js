@@ -14,7 +14,9 @@ function handleKeys() {
 		
 		for ( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].sx *= 0.9; 
+			sceneModels[i].sx *= 1.05;
+
+			console.log(sceneModels[i].sx);
 
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}
@@ -28,7 +30,9 @@ function handleKeys() {
 		
 		for ( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].sx *= 1.1; 
+			sceneModels[i].sx *= 0.95;
+
+			console.log(sceneModels[i].sx);
 
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}
@@ -42,7 +46,7 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].tx -= 0.005; 
+			sceneModels[i].tx += sceneModels[i].sx*0.005; 
 		}
 
 	}
@@ -54,7 +58,7 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].tx += 0.005; 
+			sceneModels[i].tx -= sceneModels[i].sx*0.005; 
 		}
 
 	}
@@ -66,7 +70,7 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].ty += 0.005; 
+			sceneModels[i].ty -= sceneModels[i].sx*0.005;
 		}
 
 	}
@@ -78,7 +82,7 @@ function handleKeys() {
 		
 		for( var i = 0; i < sceneModels.length; i++ )
 	    {
-			sceneModels[i].ty -= 0.005; 
+			sceneModels[i].ty += sceneModels[i].sx*0.005;
 		}
 
 	}

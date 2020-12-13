@@ -16,7 +16,7 @@ function drawScene() {
 		
 		// For now, the default orthogonal view volume
 		
-		pMatrix = ortho( -1.0, 1.0, -1.0, 1.0, -10.0, 1.0 );
+		pMatrix = ortho( -1.0, 1.0, -1.0, 1.0, -10.0, 10.0 );
 		
 		// Global transformation !!
 		
@@ -40,7 +40,7 @@ function drawScene() {
 		
 		// Ensure that the model is "inside" the view volume
 		
-		pMatrix = perspective( 45, 1, 0.05, 15 );
+		pMatrix = perspective( 45, 1, 0.01, 25 );
 		
 		// Global transformation !!
 		

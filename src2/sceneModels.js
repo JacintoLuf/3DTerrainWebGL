@@ -141,6 +141,7 @@ function terrain(url){
 			terrain.vertices[i+2] = height;
 		}
 		computeVertexNormals( terrain.vertices, terrain.normals );
+		console.log(terrain.vertices);
 	}
 	img.src = url;
 	return terrain;
