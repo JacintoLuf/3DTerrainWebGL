@@ -6,7 +6,7 @@ var currentlyPressedKeys = {};
 
 function handleKeys() {
 	
-	if (currentlyPressedKeys[38]) {
+	if (currentlyPressedKeys[33]) {
 		
 		// Page Up
 
@@ -22,7 +22,7 @@ function handleKeys() {
 		}
 		
 	}
-	if (currentlyPressedKeys[40]) {
+	if (currentlyPressedKeys[34]) {
 		
 		// Page Down
 		
@@ -38,7 +38,7 @@ function handleKeys() {
 		}
 		
 	}
-	if (currentlyPressedKeys[65]) {
+	if (currentlyPressedKeys[37]) {
 		
 		// Left cursor key
 		
@@ -50,7 +50,7 @@ function handleKeys() {
 		}
 
 	}
-	if (currentlyPressedKeys[68]) {
+	if (currentlyPressedKeys[39]) {
 		
 		// Right cursor key
 		
@@ -62,7 +62,7 @@ function handleKeys() {
 		}
 
 	}
-	if (currentlyPressedKeys[87]) {
+	if (currentlyPressedKeys[38]) {
 		
 		// Up cursor key
 		
@@ -74,7 +74,7 @@ function handleKeys() {
 		}
 
 	}
-	if (currentlyPressedKeys[83]) {
+	if (currentlyPressedKeys[40]) {
 		
 		// Down cursor key
 		
@@ -97,12 +97,12 @@ function handleKeys() {
 		sceneModels[0].sx = 1.0;
 		sceneModels[0].sy = 1.0;
 		sceneModels[0].sz = 1.0;		
-		sceneModels[0].rotXXOn = true;
-		sceneModels[0].rotYYOn = true;
-		sceneModels[0].rotZZOn = true;
-		sceneModels[0].rotXXSpeed = 0.0;
-		sceneModels[0].rotYYSpeed = 0.0;
-		sceneModels[0].rotZZSpeed = 0.0;
+		sceneModels[0].rotXXOn = false;
+		sceneModels[0].rotYYOn = false;
+		sceneModels[0].rotZZOn = false;
+		sceneModels[0].rotXXSpeed = 1.0;
+		sceneModels[0].rotYYSpeed = 1.0;
+		sceneModels[0].rotZZSpeed = 1.0;
 		sceneModels[0].rotXXDir = 1;
 		sceneModels[0].rotYYDir = 1;
 		sceneModels[0].rotZZDir = 1;
@@ -166,9 +166,14 @@ function handleMouseMove(event) {
 		sceneModels[i].rotAngleXX += radians( 5.0 * deltaY );
 
 		if ( sceneModels[i].rotAngleXX > 90.0 ) 
-			{
-				sceneModels[i].rotAngleXX = 90.0
-			}
+		{
+			sceneModels[i].rotAngleXX = 90.0
+		}
+		if ( sceneModels[i].rotAngleXX < 0.0 ) 
+		{
+			sceneModels[i].rotAngleXX = 0.0
+		}
+			
 	}
     
     lastMouseX = newX

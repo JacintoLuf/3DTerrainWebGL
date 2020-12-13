@@ -48,17 +48,17 @@ function emptyModelFeatures() {
 	
 	// Animation controls
 	
-	this.rotXXOn = true;
+	this.rotXXOn = false;
 	
-	this.rotYYOn = true;
+	this.rotYYOn = false;
 	
-	this.rotZZOn = true;
+	this.rotZZOn = false;
 	
-	this.rotXXSpeed = 0.0;
+	this.rotXXSpeed = 1.0;
 	
-	this.rotYYSpeed = 0.0;
+	this.rotYYSpeed = 1.0;
 	
-	this.rotZZSpeed = 0.0;
+	this.rotZZSpeed = 1.0;
 	
 	this.rotXXDir = 1;
 	
@@ -83,12 +83,12 @@ function simplePlane( ) {
 	var plane = new emptyModelFeatures();
 	
 	plane.vertices = [
-			-0.99, -0.99,  0.0,
-			 0.99, -0.99,  0.0,
-			 0.99,  0.99,  0.0,
-			 0.99,  0.99,  0.0,
-			-0.99,  0.99,  0.0,
-			-0.99, -0.99,  0.0,
+			-0.99,  0.0,  0.99,
+			 0.99,  0.0,  0.99,
+			 0.99,  0.0, -0.99,
+			 0.99,  0.0, -0.99,
+			-0.99,  0.0, -0.99,
+			-0.99,  0.0,  0.99,
 		];
 
 	computeVertexNormals( plane.vertices, plane.normals );
@@ -135,10 +135,10 @@ function terrain(url){
 		var ctx = canvas.getContext('2d');
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
-			var y = ((-terrain.vertices[i+1]+1)/2)*256;
+			var y = ((-terrain.vertices[i+2]+1)/2)*256;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/1000*0.05-1;
-			terrain.vertices[i+2] = height;
+			terrain.vertices[i+1] = height;
 		}
 		computeVertexNormals( terrain.vertices, terrain.normals );
 		console.log(terrain.vertices);
