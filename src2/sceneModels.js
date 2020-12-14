@@ -100,7 +100,7 @@ function simplePlane( ) {
 		 0.48627451,  0.552941176,  0.298039216,
 		 0.48627451,  0.552941176,  0.298039216,
 		 0.48627451,  0.552941176,  0.298039216,
-];
+	];
 
 		//  0.48627451,  0.552941176,  0.298039216,
 		//  0.709803922, 0.729411765,  0.380392157,
@@ -137,22 +137,24 @@ function terrain(url, depth){
 		context.drawImage(img, 0, 0);
 		var ctx = canvas.getContext('2d');
 		var max = 0;
-		var min = 1;
+		var min = 100000;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			if(x==256) x = 255;
 			var y = ((terrain.vertices[i+2]+1)/2)*256;
 			if(y==256) y = 255;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
-			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/14960-0.6015374331550802;
+			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1));
 			terrain.vertices[i+1] = height;
 			if(height>max) max = height;
-			if(height<max) min = height;
+			if(height<min) min = height;
 		}
+		var diff = max-min;
 		for(var i=0; i<terrain.vertices.length; i+=3){
-			terrain.vertices[i+1] = terrain.vertices[i+1]/max-min;
+			terrain.vertices[i+1] = (terrain.vertices[i+1]-min)/diff;
 		}
-		//console.log(terrain.vertices);
+		console.log(min);
+		console.log(max);
 		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
 	img.src = url;
