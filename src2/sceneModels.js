@@ -149,5 +149,16 @@ function terrain(url, depth){
 
 var sceneModels = [];
 
+// Model 1 --- Middle
+
 sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
-// sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+
+sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+
+// Model 2 --- Bottom Right
+
+// sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
+
+// sceneModels[1].tx = 1.0; sceneModels[1].ty = 0.0;
+
+// sceneModels[1].sx = sceneModels[1].sy = sceneModels[1].sz = 0.5;

@@ -77,7 +77,9 @@ function setEventListeners( canvas ){
 
 		meshDepth -= 1;
 		
-        sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+		sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+		
+		sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
     
         initBuffers();
 
@@ -87,7 +89,9 @@ function setEventListeners( canvas ){
 
 		meshDepth += 1;
 		
-        sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+		sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+		
+		sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
     
         initBuffers();
 
