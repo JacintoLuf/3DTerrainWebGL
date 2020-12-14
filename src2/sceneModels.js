@@ -123,7 +123,6 @@ function terrain(url, mesh){
 		var ctx = canvas.getContext('2d');
 		var max = 0;
 		var min = 1;
-		var sum = 0;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			if(x==256) x = 255;
@@ -132,11 +131,12 @@ function terrain(url, mesh){
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1))/14960-0.6015374331550802;
 			terrain.vertices[i+1] = height;
-			sum += height;
 			if(height>max) max = height;
 			if(height<max) min = height;
 		}
-		//console.log("max: "+String(max)+"\nmin: "+String(min)+"\n avg: "+String(sum/terrain.vertices.length));
+		for(var i=0; i<terrain.vertices.length; i+=3){
+			terrain.vertices[i+1] = terrain.vertices[i+1]/max-min;
+		}
 		//console.log(terrain.vertices);
 		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
@@ -149,5 +149,5 @@ function terrain(url, mesh){
 
 var sceneModels = [];
 
-sceneModels.push( new terrain( base_url3 + key, 3 ) );
+sceneModels.push( new terrain( base_url4 + key, 3 ) );
 // sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
