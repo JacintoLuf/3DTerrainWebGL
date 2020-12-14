@@ -91,7 +91,7 @@ function handleKeys() {
 		sceneModels[0].tx = 0.0;
 		sceneModels[0].ty = 0.0;
 		sceneModels[0].tz = 0.0;	
-		sceneModels[0].rotAngleXX = 30.0;
+		sceneModels[0].rotAngleXX = 15.0;
 		sceneModels[0].rotAngleYY = 0.0;
 		sceneModels[0].rotAngleZZ = 0.0;
 		sceneModels[0].sx = 0.8;

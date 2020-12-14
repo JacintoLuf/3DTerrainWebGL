@@ -32,7 +32,7 @@ function emptyModelFeatures() {
 	
 	// Rotation angles	
 	
-	this.rotAngleXX = 30.0;
+	this.rotAngleXX = 15.0;
 	
 	this.rotAngleYY = 0.0;
 	
@@ -109,8 +109,8 @@ function planeModel( subdivisionDepth = 3 ) {
 }
 
 
-function terrain(url, mesh){
-	var terrain = new planeModel( mesh )
+function terrain(url, depth){
+	var terrain = new planeModel( depth )
 
 	var canvas = document.createElement('canvas');
 	var img = new Image();
@@ -149,5 +149,5 @@ function terrain(url, mesh){
 
 var sceneModels = [];
 
-sceneModels.push( new terrain( base_url4 + key, 3 ) );
+sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
 // sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;

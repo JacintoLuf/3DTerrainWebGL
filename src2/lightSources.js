@@ -134,6 +134,16 @@ LightSource.prototype.switchRotYYOff = function() {
 	this.rotYYOn = false;
 }
 
+LightSource.prototype.switchRotZZOn = function() {
+	
+	this.rotZZOn = true;
+}
+
+LightSource.prototype.switchRotZZOff = function() {
+	
+	this.rotZZOn = false;
+}
+
 LightSource.prototype.getRotAngleYY = function() {
 	
 	return this.rotAngleYY;

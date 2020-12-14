@@ -39,6 +39,10 @@ var globalAngleYY = 0.0;
 
 var globalTz = 0.0;
 
+// Mesh Depth Level
+
+var meshDepth = 2;
+
 // GLOBAL Animation controls
 
 var globalRotationYY_ON = 0;
@@ -53,7 +57,7 @@ var primitiveType = null;
  
 // To allow choosing the projection type
 
-var projectionType = 0;
+var projectionType = 1;
 
 // NEW --- The viewer position
 
