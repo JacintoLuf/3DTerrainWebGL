@@ -32,7 +32,7 @@ function emptyModelFeatures() {
 	
 	// Rotation angles	
 	
-	this.rotAngleXX = 0.0;
+	this.rotAngleXX = 30.0;
 	
 	this.rotAngleYY = 0.0;
 	
@@ -40,11 +40,11 @@ function emptyModelFeatures() {
 
 	// Scaling factors
 	
-	this.sx = 1.0;
+	this.sx = 0.8;
 	
-	this.sy = 1.0;
+	this.sy = 0.8;
 	
-	this.sz = 1.0;		
+	this.sz = 0.8;		
 	
 	// Animation controls
 	
@@ -97,7 +97,7 @@ function simplePlane( ) {
 }
 
 
-function planeModel( subdivisionDepth = 5 ) {
+function planeModel( subdivisionDepth = 3 ) {
 	
 	var plane = new simplePlane();
 	
@@ -109,8 +109,8 @@ function planeModel( subdivisionDepth = 5 ) {
 }
 
 
-function terrain(url){
-	var terrain = new planeModel( 8 )
+function terrain(url, mesh){
+	var terrain = new planeModel( mesh )
 
 	var canvas = document.createElement('canvas');
 	var img = new Image();
@@ -149,5 +149,5 @@ function terrain(url){
 
 var sceneModels = [];
 
-sceneModels.push( new terrain( base_url3 + key ) );
+sceneModels.push( new terrain( base_url3 + key, 3 ) );
 // sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;

@@ -71,6 +71,98 @@ function setEventListeners( canvas ){
 		}
 	});      
 
+	// Mesh mult
+
+	document.getElementById("mid-rec-depth-1-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 1 )
+    
+        initBuffers();
+
+	};
+
+    document.getElementById("mid-rec-depth-2-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 2 )
+    
+        initBuffers();
+
+	};
+
+    document.getElementById("mid-rec-depth-3-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 3 )
+    
+        initBuffers();
+
+	};
+
+	document.getElementById("mid-rec-depth-4-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 4 )
+    
+        initBuffers();
+
+	};
+
+    document.getElementById("mid-rec-depth-5-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 5 )
+    
+        initBuffers();
+
+	};
+
+    document.getElementById("mid-rec-depth-6-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 6 )
+    
+        initBuffers();
+
+	};
+
+	document.getElementById("mid-rec-depth-7-button").onclick = function(){
+		
+        sceneModels[0] = new terrain( base_url3 + key, 7 )
+    
+        initBuffers();
+
+	};
+
+	// Light events
+
+	document.getElementById("light-1").onclick = function(){
+
+		lightSources.pop()
+		
+        lightSources.push( new LightSource() );
+
+		lightSources[0].setPosition( -1.0, 1.0, 1.0, 0.0 );
+
+		lightSources[0].setIntensity( 0.0, 1.0, 0.0 );
+
+		lightSources[0].setAmbIntensity( 0.2, 0.0, 0.0 );
+
+		lightSources[0].switchRotYYOn();
+
+		lightSources[0].setRotationSpeed( 1.0 );
+
+	};
+
+	document.getElementById("light-2").onclick = function(){
+
+		lightSources.pop()
+		
+        lightSources.push( new LightSource() );
+
+		lightSources[0].setPosition( -1.0, 1.0, 1.0, 0.0 );
+
+		lightSources[0].setIntensity( 1.0, 0.0, 1.0 );
+
+		lightSources[0].setAmbIntensity( 0.2, 0.0, 0.0 );
+
+	};
+
 	// Button events
 	
 	document.getElementById("XX-on-off-button").onclick = function(){
