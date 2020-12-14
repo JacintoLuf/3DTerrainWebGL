@@ -75,26 +75,24 @@ function setEventListeners( canvas ){
 
 	document.getElementById("rec-depth-sub-button").onclick = function(){
 
-		meshDepth -= 1;
+		if(!(meshDepth<1)){
+			meshDepth -= 1;
 		
-		sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+			sceneModels[0] = new terrain( base_url2 + key, meshDepth )
 		
-		sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
-    
-        initBuffers();
-
+			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+		}
 	};
 
     document.getElementById("rec-depth-add-button").onclick = function(){
 
-		meshDepth += 1;
+		if(!(meshDepth>7)){
+			meshDepth += 1;
 		
-		sceneModels[0] = new terrain( base_url4 + key, meshDepth )
+			sceneModels[0] = new terrain( base_url2 + key, meshDepth )
 		
-		sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
-    
-        initBuffers();
-
+			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+		}
 	};
 
 	// Light events

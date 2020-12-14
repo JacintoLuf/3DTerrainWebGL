@@ -166,7 +166,7 @@ var sceneModels = [];
 
 // Model 1 --- Middle
 
-sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
+sceneModels.push( new terrain( base_url2 + key, meshDepth ) );
 
 sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
 

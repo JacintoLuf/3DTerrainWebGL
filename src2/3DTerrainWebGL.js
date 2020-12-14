@@ -18,7 +18,8 @@
 // Global Variables
 //
 
-var base_url = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/14/12558/6127.pngraw?access_token='
+var base_url;
+var base_url1 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/14/12558/6127.pngraw?access_token='
 var base_url2 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/0/0/0.pngraw?access_token='
 var base_url3 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/2/2/1.pngraw?access_token='
 var base_url4 = 'https://api.mapbox.com/v4/mapbox.terrain-rgb/12/1171/1566.pngraw?access_token='
@@ -43,7 +44,7 @@ var globalTz = 0.0;
 
 // Mesh Depth Level
 
-var meshDepth = 2;
+var meshDepth = 7;
 
 // GLOBAL Animation controls
 
@@ -197,6 +198,8 @@ function tick() {
 	requestAnimFrame(tick);
 
 	handleKeys();
+
+	//map();
 	
 	drawScene();
 	

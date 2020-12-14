@@ -16,6 +16,8 @@ function handleKeys() {
 	    {
 			sceneModels[i].sx *= 1.05;
 
+			console.log(sceneModels[i].sx);
+
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}
 		
@@ -29,6 +31,8 @@ function handleKeys() {
 		for ( var i = 0; i < sceneModels.length; i++ )
 	    {
 			sceneModels[i].sx *= 0.95;
+
+			console.log(sceneModels[i].sx);
 
 			sceneModels[i].sz = sceneModels[i].sy = sceneModels[i].sx;
 		}
