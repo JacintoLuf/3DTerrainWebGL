@@ -227,7 +227,6 @@ function outputInfos(){
 
 function initWebGL( canvas ) {
 	try {
-		
 		// Create the WebGL context
 		
 		// Some browsers still need "experimental-webgl"

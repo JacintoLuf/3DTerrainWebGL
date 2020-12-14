@@ -145,6 +145,31 @@ function terrain(url, depth){
 			if(y==256) y = 255;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1));
+			if(height<8980){
+				terrain.colors[i] = 182/255;
+				terrain.colors[i+1] = 227/255;
+				terrain.colors[i+2] = 219/255;
+			}
+			if(height>=8980 && height<10000){
+				terrain.colors[i] = 124/255;
+				terrain.colors[i+1] = 141/255;
+				terrain.colors[i+2] = 76/255;
+			}
+			if(height>=10000 && height<11000){
+				terrain.colors[i] = 181/255;
+				terrain.colors[i+1] = 186/255;
+				terrain.colors[i+2] = 97/255;
+			}
+			if(height>=11000 && height<12500){
+				terrain.colors[i] = 114/255;
+				terrain.colors[i+1] = 84/255;
+				terrain.colors[i+2] = 40/255;
+			}
+			if(height>=12500){
+				terrain.colors[i] = 229/255;
+				terrain.colors[i+1] = 217/255;
+				terrain.colors[i+2] = 219/255;
+			}
 			terrain.vertices[i+1] = height;
 			if(height>max) max = height;
 			if(height<min) min = height;
@@ -171,11 +196,3 @@ var sceneModels = [];
 sceneModels.push( new terrain( base_url2 + key, meshDepth ) );
 
 sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
-
-// Model 2 --- Bottom Right
-
-// sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
-
-// sceneModels[1].tx = 1.0; sceneModels[1].ty = 0.0;
-
-// sceneModels[1].sx = sceneModels[1].sy = sceneModels[1].sz = 0.5;

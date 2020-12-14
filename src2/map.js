@@ -4,6 +4,7 @@ var end_url = '.pngraw?access_token='+key;
 var zoom = 0;
 var tile = Math.pow(2,2*zoom);
 var x_pos = y_pos = Math.floor(Math.pow(2,zoom)-1/2);
+
 function calc_tile(){
     tile = Math.pow(2,2*zoom);
 }
