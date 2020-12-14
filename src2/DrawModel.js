@@ -69,6 +69,10 @@ gl.uniform3fv( gl.getUniformLocation(shaderProgram, "allLights[" + String(i) + "
 flatten(lightSources[i].getIntensity()) );
 }
 
+gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
+    
+gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, cubeVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
 // Drawing 
 
 // primitiveType allows drawing as filled triangles / wireframe / vertices

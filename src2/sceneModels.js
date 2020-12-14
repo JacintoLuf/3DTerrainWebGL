@@ -20,6 +20,8 @@ function emptyModelFeatures() {
 
 	this.normals = [];
 
+	this.colors = [];
+
 	// Transformation parameters
 
 	// Displacement vector
@@ -89,7 +91,20 @@ function simplePlane( ) {
 			 1,  0.0, -1,
 			-1,  0.0, -1,
 			-1,  0.0,  1,
-		];
+	];
+
+	plane.colors = [
+		 0.709803922, 0.729411765,  0.380392157,
+		 0.447058824,  0.329411765,  0.156862745,
+		 0.447058824,  0.329411765,  0.156862745,
+		 0.48627451,  0.552941176,  0.298039216,
+		 0.48627451,  0.552941176,  0.298039216,
+		 0.48627451,  0.552941176,  0.298039216,
+];
+
+		//  0.48627451,  0.552941176,  0.298039216,
+		//  0.709803922, 0.729411765,  0.380392157,
+		//  0.447058824,  0.329411765,  0.156862745,
 
 	computeVertexNormals( plane.vertices, plane.normals );
 
@@ -101,7 +116,7 @@ function planeModel( subdivisionDepth = 3 ) {
 	
 	var plane = new simplePlane();
 	
-	midPointRefinement( plane.vertices, subdivisionDepth );
+	midPointRefinement( plane.vertices, plane.colors, subdivisionDepth );
 	
 	computeVertexNormals( plane.vertices, plane.normals );
 	

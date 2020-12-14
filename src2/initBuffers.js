@@ -29,4 +29,12 @@ function initBuffers( model ) {
 	gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, 
 			triangleVertexNormalBuffer.itemSize, 
 			gl.FLOAT, false, 0, 0);	
+
+	// Colors
+			
+	cubeVertexColorBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.colors), gl.STATIC_DRAW);
+	cubeVertexColorBuffer.itemSize = 3;
+	cubeVertexColorBuffer.numItems = model.vertices.length / 3;
 }

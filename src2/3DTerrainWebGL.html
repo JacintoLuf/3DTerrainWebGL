@@ -76,7 +76,9 @@ The fragment shader is the same simple one.
 	
 	uniform vec3 k_specular;
 	
-    uniform float shininess;
+	uniform float shininess;
+	
+	attribute vec3 aVertexColor;
         
     void main(void) {
 		
@@ -182,11 +184,13 @@ The fragment shader is the same simple one.
            if( dotProductLN < 0.0 ) {
 	
 		      specular = vec4(0.0, 0.0, 0.0, 1.0);
-           } 
+		   } 
+		   
+		   // Converting the RGB color value to RGBA
 
 		   // Adding the components
 		
-           fColor += diffuse + specular;
+           fColor += diffuse + specular + vec4(aVertexColor, 1.0);
 	   }
 	}
     

@@ -33,6 +33,8 @@ var triangleVertexPositionBuffer = null;
 	
 var triangleVertexNormalBuffer = null;	
 
+var cubeVertexColorBuffer = null;
+
 // The GLOBAL transformation parameters
 
 var globalAngleYY = 0.0;
