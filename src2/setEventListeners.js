@@ -78,7 +78,7 @@ function setEventListeners( canvas ){
 		if(!(meshDepth<1)){
 			meshDepth -= 1;
 		
-			sceneModels[0] = new terrain( base_url2 + key, meshDepth )
+			sceneModels[0] = new terrain( inUseURL + key, meshDepth )
 		
 			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
 		}
@@ -89,7 +89,7 @@ function setEventListeners( canvas ){
 		if(!(meshDepth>7)){
 			meshDepth += 1;
 		
-			sceneModels[0] = new terrain( base_url2 + key, meshDepth )
+			sceneModels[0] = new terrain( inUseURL + key, meshDepth )
 		
 			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
 		}
@@ -100,18 +100,18 @@ function setEventListeners( canvas ){
 	document.getElementById("light-1").onclick = function(){
 
 		lightSources.pop()
-		
-        lightSources.push( new LightSource() );
+
+		lightSources.push( new LightSource() );
 
 		lightSources[0].setPosition( -1.0, 1.0, 1.0, 0.0 );
-
-		lightSources[0].setIntensity( 1.0, 0.89, 0.52 );
-
+		
+		lightSources[0].setIntensity( 0.5, 0.5, 0.52 );
+		
 		lightSources[0].setAmbIntensity( 0.2, 0.0, 0.0 );
-
-		lightSources[0].switchRotYYOn();
-
-		lightSources[0].setRotationSpeed( 1.0 );
+		
+		lightSources[0].switchRotYYOn( );
+		
+		lightSources[0].setRotationSpeed( 1 );
 
 	};
 

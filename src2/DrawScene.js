@@ -5,6 +5,10 @@ function drawScene() {
 	var pMatrix;
 	
 	var mvMatrix = mat4();
+
+	// Clear color to black
+
+	gl.clearColor(0.53, 0.81, 0.92, 1.0)
 	
 	// Clearing the frame-buffer and the depth-buffer
 	

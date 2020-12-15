@@ -11,6 +11,11 @@
 //  Constructors
 //
 
+// global variables
+
+var max = 0;
+var min = 100000;
+var rgb = [];
 
 function emptyModelFeatures() {
 
@@ -70,11 +75,11 @@ function emptyModelFeatures() {
 	
 	// Material features
 	
-	this.kAmbi = [ 0.2, 0.2, 0.2 ];
+	this.kAmbi = [ 0.16, 0.10, 0.02 ];
 	
-	this.kDiff = [ 0.7, 0.7, 0.7 ];
+	this.kDiff = [ 0.5, 0.5, 0.5 ];
 
-	this.kSpec = [ 0.7, 0.7, 0.7 ];
+	this.kSpec = [ 0.4, 0.4, 0.4 ];
 
 	this.nPhong = 100;
 }
@@ -94,12 +99,18 @@ function simplePlane( ) {
 	];
 
 	plane.colors = [
-		 0.709803922, 0.729411765,  0.380392157,
-		 0.447058824,  0.329411765,  0.156862745,
-		 0.447058824,  0.329411765,  0.156862745,
-		 0.48627451,  0.552941176,  0.298039216,
-		 0.48627451,  0.552941176,  0.298039216,
-		 0.48627451,  0.552941176,  0.298039216,
+			0.0, 0.0, 0.0,
+			0.0, 0.0, 0.0,
+			0.0, 0.0, 0.0,
+			0.0, 0.0, 0.0,
+			0.0, 0.0, 0.0,
+			0.0, 0.0, 0.0,
+		//  0.709803922, 0.729411765,  0.380392157,
+		//  0.447058824,  0.329411765,  0.156862745,
+		//  0.447058824,  0.329411765,  0.156862745,
+		//  0.48627451,  0.552941176,  0.298039216,
+		//  0.48627451,  0.552941176,  0.298039216,
+		//  0.48627451,  0.552941176,  0.298039216,
 	];
 
 		//  0.48627451,  0.552941176,  0.298039216,
@@ -136,8 +147,6 @@ function terrain(url, depth){
 		var context = canvas.getContext('2d');
 		context.drawImage(img, 0, 0);
 		var ctx = canvas.getContext('2d');
-		var max = 0;
-		var min = 100000;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			if(x==256) x = 255;
@@ -145,32 +154,11 @@ function terrain(url, depth){
 			if(y==256) y = 255;
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1));
-			if(height<8980){
-				terrain.colors[i] = 182/255;
-				terrain.colors[i+1] = 227/255;
-				terrain.colors[i+2] = 219/255;
-			}
-			if(height>=8980 && height<10000){
-				terrain.colors[i] = 124/255;
-				terrain.colors[i+1] = 141/255;
-				terrain.colors[i+2] = 76/255;
-			}
-			if(height>=10000 && height<11000){
-				terrain.colors[i] = 181/255;
-				terrain.colors[i+1] = 186/255;
-				terrain.colors[i+2] = 97/255;
-			}
-			if(height>=11000 && height<12500){
-				terrain.colors[i] = 114/255;
-				terrain.colors[i+1] = 84/255;
-				terrain.colors[i+2] = 40/255;
-			}
-			if(height>=12500){
-				terrain.colors[i] = 229/255;
-				terrain.colors[i+1] = 217/255;
-				terrain.colors[i+2] = 219/255;
-			}
 			terrain.vertices[i+1] = height;
+			rgb = colorMap(height);
+			terrain.colors[i] = rgb[0];
+			terrain.colors[i+1] = rgb[1];
+			terrain.colors[i+2] = rgb[2];
 			if(height>max) max = height;
 			if(height<min) min = height;
 		}
@@ -186,6 +174,43 @@ function terrain(url, depth){
 	return terrain;
 }
 
+function colorMap( height ) {
+	var levelDiff = ( max - min ) / 5;
+	var waterLevel = ( max - min ) / 15;
+
+    if ( height >= min && height < ( min + waterLevel ) ) {
+		rgb[0] = 182/255 + randomColorVariation( 8 );
+		rgb[1] = 227/255 + randomColorVariation( 8 );
+		rgb[2] = 219/255 + randomColorVariation( 8 );
+	}
+	if ( height >= ( min + waterLevel ) && height < ( min + 2*levelDiff ) ) {
+		rgb[0] = 181/255 + randomColorVariation( 6 );
+		rgb[1] = 186/255 + randomColorVariation( 6 );
+		rgb[2] = 97/255 + randomColorVariation( 6 );
+	}
+	if ( height >= ( min + 2*levelDiff ) && height < ( min + 3*levelDiff ) ) {
+		rgb[0] = 124/255 + randomColorVariation( 6 );
+		rgb[1] = 141/255 + randomColorVariation( 6 );
+		rgb[2] = 76/255 + randomColorVariation( 6 );
+	}
+	if ( height >= ( min + 3*levelDiff ) && ( min + 4*levelDiff ) ) {
+		rgb[0] = 114/255 + randomColorVariation( 9 );
+		rgb[1] = 84/255 + randomColorVariation( 9 );
+		rgb[2] = 40/255 + randomColorVariation( 9 );
+	}
+	if ( height >= ( min + 4*levelDiff ) && height < max ) {
+		rgb[0] = 229/255 + randomColorVariation( 9 );;
+		rgb[1] = 217/255 + randomColorVariation( 9 );;
+		rgb[2] = 219/255 + randomColorVariation( 9 );;
+	}
+
+	return rgb;
+}
+
+function randomColorVariation( randomness ) {
+	return Math.random() / randomness;
+  }
+
 //  Instantiating scene models
 //
 
@@ -193,6 +218,6 @@ var sceneModels = [];
 
 // Model 1 --- Middle
 
-sceneModels.push( new terrain( base_url4 + key, meshDepth ) );
+sceneModels.push( new terrain( inUseURL + key, meshDepth ) );
 
 sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
