@@ -180,10 +180,6 @@ function terrain(url, t_url, depth){
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1));
 			terrain.vertices[i+1] = height;
-			// rgb = colorMap(height);
-			// terrain.colors[i] = rgb[0];
-			// terrain.colors[i+1] = rgb[1];
-			// terrain.colors[i+2] = rgb[2];
 			if(height>max) max = height;
 			if(height<min) min = height;
 		}
@@ -203,8 +199,6 @@ function terrain(url, t_url, depth){
 				terrain.vertices[i+1] = (terrain.vertices[i+1]-min)/diff;
 			}
 		}
-		//console.log(min);
-		//console.log(max);
 		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
 	img.src = url;

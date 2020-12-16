@@ -71,24 +71,6 @@ function setEventListeners( canvas ){
 		}
 	});      
 
-	// // Mesh mult
-
-	// document.getElementById("rec-depth-sub-button").onclick = function(){
-
-	// 	if(!(meshDepth<1)){
-	// 		meshDepth -= 1;
-	// 		walk_map();
-	// 	}
-	// };
-
-    // document.getElementById("rec-depth-add-button").onclick = function(){
-
-	// 	if(!(meshDepth>7)){
-	// 		meshDepth += 1;
-	// 		walk_map();
-	// 	}
-	// };
-
 	document.getElementById("rec-depth-slider").onclick = function(){
 
 		var slider = document.getElementById("rec-depth-slider");
@@ -110,8 +92,6 @@ function setEventListeners( canvas ){
 	// Light events
 
 	document.getElementById("light-1").onclick = function(){
-
-		console.log(!lightSources[0].isRotZZOn());
 
 		if( !lightSources[0].isRotZZOn() ) 
 		{

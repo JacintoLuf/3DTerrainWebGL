@@ -6,13 +6,9 @@ function drawScene() {
 	
 	var mvMatrix = mat4();
 
-	// Clear color to black
-
-	//gl.clearColor(1.0, 1.0, 1.0, 1.0)
+	// Clear color to sky blue
 
 	gl.clearColor(0.53, 0.81, 0.92, 1.0)
-
-	// gl.clearColor(0.71, 0.9, 0.86, 1.0)
 	
 	// Clearing the frame-buffer and the depth-buffer
 	

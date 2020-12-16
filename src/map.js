@@ -46,18 +46,15 @@ function map(){
     try{
         if(sceneModels[0].vertices) old_model = sceneModels[0];
     }catch{}
-    console.log("zoom:"+String(zoom)+" tile:"+String(tile)+" x:"+String(x_pos)+" y:"+String(y_pos));
     var m_url = map_url+String(zoom)+'/'+String(x_pos)+'/'+String(y_pos)+'.pngraw?'+end_url;
     var t_url = texture_url+String(zoom)+'/'+String(x_pos)+'/'+String(y_pos)+'.jpg80?'+end_url;
     sceneModels[0] = new terrain(m_url, t_url, meshDepth);
     if(old_model) keep_tranformation(old_model);
 }
 function walk_map(x=0, y=0){
-    console.log("x:"+String(x)+" y:"+String(y)+" x:"+String(x_pos)+" y:"+String(y_pos));
     if(x_pos+x<0 || x_pos+x>x_max || y_pos+y<0 || y_pos+y>y_max ) return;
     x_pos += x;
     y_pos += y;
-    console.log("zoom:"+String(zoom)+" tile:"+String(tile));
     var m_url = map_url+String(zoom)+'/'+String(x_pos)+'/'+String(y_pos)+'.pngraw?'+end_url;
     var t_url = texture_url+String(zoom)+'/'+String(x_pos)+'/'+String(y_pos)+'.jpg80?'+end_url;
     var old_model = sceneModels[0];
