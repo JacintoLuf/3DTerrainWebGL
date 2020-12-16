@@ -1,5 +1,5 @@
 function setEventListeners( canvas ){
-	
+
 	// NEW ---Handling the mouse
 	
 	// From learningwebgl.com
@@ -28,7 +28,7 @@ function setEventListeners( canvas ){
     
     document.onkeyup = handleKeyUp;
 	
-	// Dropdown list
+    // Dropdown list
 	
 	var projection = document.getElementById("projection-selection");
 	
@@ -48,6 +48,82 @@ function setEventListeners( canvas ){
 		}  	
 	});      
 
+	// Dropdown list
+	
+	var list = document.getElementById("rendering-mode-selection");
+	
+	list.addEventListener("click", function(){
+				
+		// Getting the selection
+		
+		var mode = list.selectedIndex;
+				
+		switch(mode){
+			
+			case 0 : primitiveType = gl.TRIANGLES;
+				break;
+			
+			case 1 : primitiveType = gl.LINE_LOOP;
+				break;
+			
+			case 2 : primitiveType = gl.POINTS;
+				break;
+		}
+	});      
+
+	// Mesh mult
+
+	document.getElementById("rec-depth-sub-button").onclick = function(){
+
+		if(!(meshDepth<1)){
+			meshDepth -= 1;
+		
+			map();
+		}
+	};
+
+    document.getElementById("rec-depth-add-button").onclick = function(){
+
+		if(!(meshDepth>7)){
+			meshDepth += 1;
+		
+			map();
+		}
+	};
+
+	// Light events
+
+	document.getElementById("light-1").onclick = function(){
+
+		lightSources.pop()
+
+		lightSources.push( new LightSource() );
+
+		lightSources[0].setPosition( -1.0, 1.0, 1.0, 0.0 );
+		
+		lightSources[0].setIntensity( 0.5, 0.5, 0.52 );
+		
+		lightSources[0].setAmbIntensity( 0.2, 0.0, 0.0 );
+		
+		lightSources[0].switchRotYYOn( );
+		
+		lightSources[0].setRotationSpeed( 1 );
+
+	};
+
+	document.getElementById("light-2").onclick = function(){
+
+		lightSources.pop()
+		
+        lightSources.push( new LightSource() );
+
+		lightSources[0].setPosition( -1.0, 1.0, 1.0, 0.0 );
+
+		lightSources[0].setIntensity( 1.0, 0.0, 1.0 );
+
+		lightSources[0].setAmbIntensity( 0.2, 0.0, 0.0 );
+
+	};
 
 	// Button events
 	
@@ -55,154 +131,167 @@ function setEventListeners( canvas ){
 		
 		// Switching on / off
 		
-		if( rotationXX_ON ) {
-			
-			rotationXX_ON = 0;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotXXOn ) {
+
+				sceneModels[i].rotXXOn = false;
+			}
+			else {
+				sceneModels[i].rotXXOn = true;
+			}	
 		}
-		else {
-			
-			rotationXX_ON = 1;
-		}  
 	};
 
 	document.getElementById("XX-direction-button").onclick = function(){
 		
 		// Switching the direction
 		
-		if( rotationXX_DIR == 1 ) {
-			
-			rotationXX_DIR = -1;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotXXDir == 1 ) {
+
+				sceneModels[i].rotXXDir = -1;
+			}
+			else {
+				sceneModels[i].rotXXDir = 1;
+			}	
 		}
-		else {
-			
-			rotationXX_DIR = 1;
-		}  
 	};      
 
 	document.getElementById("XX-slower-button").onclick = function(){
 		
-		rotationXX_SPEED *= 0.75;  
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed *= 0.75; 
+		}
 	};      
 
 	document.getElementById("XX-faster-button").onclick = function(){
 		
-		rotationXX_SPEED *= 1.25;  
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotXXSpeed *= 1.25; 
+		}
 	};      
 
 	document.getElementById("YY-on-off-button").onclick = function(){
 		
 		// Switching on / off
 		
-		if( rotationYY_ON ) {
-			
-			rotationYY_ON = 0;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotYYOn ) {
+
+				sceneModels[i].rotYYOn = false;
+			}
+			else {
+				sceneModels[i].rotYYOn = true;
+			}	
 		}
-		else {
-			
-			rotationYY_ON = 1;
-		}  
 	};
 
 	document.getElementById("YY-direction-button").onclick = function(){
 		
 		// Switching the direction
 		
-		if( rotationYY_DIR == 1 ) {
-			
-			rotationYY_DIR = -1;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotYYDir == 1 ) {
+
+				sceneModels[i].rotYYDir = -1;
+			}
+			else {
+				sceneModels[i].rotYYDir = 1;
+			}	
 		}
-		else {
-			
-			rotationYY_DIR = 1;
-		}  
 	};      
 
 	document.getElementById("YY-slower-button").onclick = function(){
+
+		// For every model
 		
-		rotationYY_SPEED *= 0.75;  
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed *= 0.75; 
+		}
 	};      
 
 	document.getElementById("YY-faster-button").onclick = function(){
 		
-		rotationYY_SPEED *= 1.25;  
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotYYSpeed *= 1.25; 
+		}
 	};      
 
 	document.getElementById("ZZ-on-off-button").onclick = function(){
 		
 		// Switching on / off
 		
-		if( rotationZZ_ON ) {
-			
-			rotationZZ_ON = 0;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotZZOn ) {
+
+				sceneModels[i].rotZZOn = false;
+			}
+			else {
+				sceneModels[i].rotZZOn = true;
+			}	
 		}
-		else {
-			
-			rotationZZ_ON = 1;
-		}  
 	};
 
 	document.getElementById("ZZ-direction-button").onclick = function(){
 		
 		// Switching the direction
 		
-		if( rotationZZ_DIR == 1 ) {
-			
-			rotationZZ_DIR = -1;
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			if( sceneModels[i].rotZZDir == 1 ) {
+
+				sceneModels[i].rotZZDir = -1;
+			}
+			else {
+				sceneModels[i].rotZZDir = 1;
+			}	
 		}
-		else {
-			
-			rotationZZ_DIR = 1;
-		}  
 	};      
 
 	document.getElementById("ZZ-slower-button").onclick = function(){
 		
-		rotationZZ_SPEED *= 0.75;  
+		// For every model
+		
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotZZSpeed *= 0.75; 
+		}
 	};      
 
 	document.getElementById("ZZ-faster-button").onclick = function(){
 		
-		rotationZZ_SPEED *= 1.25;  
-	};      
-
-	document.getElementById("reset-button").onclick = function(){
+		// For every model
 		
-		// The initial values
-
-		tx = 0.0;
-
-		ty = 0.0;
-
-		tz = 0.0;
-
-		angleXX = 0.0;
-
-		angleYY = 0.0;
-
-		angleZZ = 0.0;
-
-		sx = 0.25;
-
-		sy = 0.25;
-
-		sz = 0.25;
-		
-		rotationXX_ON = 0;
-		
-		rotationXX_DIR = 1;
-		
-		rotationXX_SPEED = 1;
-
-		rotationYY_ON = 0;
-		
-		rotationYY_DIR = 1;
-		
-		rotationYY_SPEED = 1;
-
-		rotationZZ_ON = 0;
-		
-		rotationZZ_DIR = 1;
-		
-		rotationZZ_SPEED = 1;
+		for(var i = 0; i < sceneModels.length; i++ )
+	    {
+			sceneModels[i].rotZZSpeed *= 1.25; 
+		}
 	};      
 }

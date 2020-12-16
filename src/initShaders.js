@@ -4,7 +4,7 @@
 //
 //	Getting, compiling and linking the vertex and the fragment shaders
 //
-//  J. Madeira - October 2015 / November 2015
+//  J. Madeira - October 2015
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -64,36 +64,23 @@ function initShaders( gl ) {
 	}
 
 	gl.useProgram(shaderProgram);
-
-	// Coordinates 
 	
-	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+	// Shader input
+
+	// Vertex Coordinates 
+	
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "vPosition");
 	gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
-	// Colors 
+	// Vertex Normals 
 	
+	shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "vNormal");
+	gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
+
+	// Colors 
+		
 	shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
 	gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
 	
 	return shaderProgram;
-
-	// // NEW --- Texture coordinates
-	
-    // shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
-    // gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
-
-	// // NEW --- The matrices
-	 
-    // shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
-    // shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
-    
-    // // NEW --- The sampler
-    
-    // shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
-
-    // // NEW --- Blending
-    
-    // shaderProgram.alphaUniform = gl.getUniformLocation(shaderProgram, "uAlpha");
-    
-	// return shaderProgram;
 }
