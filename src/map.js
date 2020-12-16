@@ -40,6 +40,7 @@ function keep_tranformation(model){
 }
 
 function map(){
+    document.getElementById("zoom").innerHTML = zoom;
     var old_model;
     calc_tile(); calc_pos();
     try{

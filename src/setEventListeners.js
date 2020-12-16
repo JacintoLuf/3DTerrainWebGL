@@ -77,8 +77,7 @@ function setEventListeners( canvas ){
 
 		if(!(meshDepth<1)){
 			meshDepth -= 1;
-		
-			map();
+			walk_map();
 		}
 	};
 
@@ -86,8 +85,7 @@ function setEventListeners( canvas ){
 
 		if(!(meshDepth>7)){
 			meshDepth += 1;
-		
-			map();
+			walk_map();
 		}
 	};
 
