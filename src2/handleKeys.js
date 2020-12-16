@@ -82,6 +82,63 @@ function handleKeys() {
 		}
 
 	}
+	if (currentlyPressedKeys[48]) {
+		zoom = 0;
+		map();
+	}
+	if (currentlyPressedKeys[49]) {
+		zoom = 1;
+		map();
+	}
+	if (currentlyPressedKeys[50]) {
+		old_zoom = zoom;
+		zoom = 2;
+		map();
+	}
+	if (currentlyPressedKeys[51]) {
+		zoom = 3;
+		map();
+	}
+	if (currentlyPressedKeys[52]) {
+		zoom = 4;
+		map();
+	}
+	if (currentlyPressedKeys[53]) {
+		zoom = 5;
+		map();
+	}
+	if (currentlyPressedKeys[54]) {
+		zoom = 6;
+		map();
+	}
+	if (currentlyPressedKeys[55]) {
+		zoom = 7;
+		map();
+	}
+	if (currentlyPressedKeys[56]) {
+		zoom = 8;
+		map();
+	}
+	if (currentlyPressedKeys[57]) {
+		zoom = 9;
+		map();
+	}
+	if (currentlyPressedKeys[87]) {
+		//w key
+		walk_map(0,-1);
+	}
+	if (currentlyPressedKeys[65]) {
+		//a key
+		walk_map(-1,0);
+	}
+	if (currentlyPressedKeys[83]) {
+		//s key
+		walk_map(0,1);
+	}
+	if (currentlyPressedKeys[68]) {
+		//d key
+		walk_map(1,0);
+	}
 	if (currentlyPressedKeys[82]) {
 		//r key to reset
 		sceneModels[0].tx = 0.0;

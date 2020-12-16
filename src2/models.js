@@ -101,6 +101,7 @@ colorsArray.splice( 0, origArrayLength );
 
 var origIndex;
 
+
 // Each triangle is recursively subdivided into 4 triangles
 
 // Iterate through the original triangular faces

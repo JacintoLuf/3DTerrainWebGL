@@ -13,8 +13,6 @@
 
 // global variables
 
-var max = 0;
-var min = 100000;
 var rgb = [];
 
 function emptyModelFeatures() {
@@ -105,25 +103,15 @@ function simplePlane( ) {
 			0.0, 0.0, 0.0,
 			0.0, 0.0, 0.0,
 			0.0, 0.0, 0.0,
-		//  0.709803922, 0.729411765,  0.380392157,
-		//  0.447058824,  0.329411765,  0.156862745,
-		//  0.447058824,  0.329411765,  0.156862745,
-		//  0.48627451,  0.552941176,  0.298039216,
-		//  0.48627451,  0.552941176,  0.298039216,
-		//  0.48627451,  0.552941176,  0.298039216,
 	];
-
-		//  0.48627451,  0.552941176,  0.298039216,
-		//  0.709803922, 0.729411765,  0.380392157,
-		//  0.447058824,  0.329411765,  0.156862745,
-
+	
 	computeVertexNormals( plane.vertices, plane.normals );
-
+	
 	return plane;
 }
 
 
-function planeModel( subdivisionDepth = 3 ) {
+function planeModel( subdivisionDepth = 5 ) {
 	
 	var plane = new simplePlane();
 	
@@ -134,10 +122,45 @@ function planeModel( subdivisionDepth = 3 ) {
 	return plane;
 }
 
+function colorMap( height, mi, ma ) {
+	var levelDiff = ( ma - mi ) / 5;
+	var waterLevel = ( ma - mi ) / 15;
+	
+    if ( height >= mi && height < ( mi + waterLevel ) ) {
+		rgb[0] = 182/255 + randomColorVariation( 8 );
+		rgb[1] = 227/255 + randomColorVariation( 8 );
+		rgb[2] = 219/255 + randomColorVariation( 8 );
+	}
+	if ( height >= ( mi + waterLevel ) && height < ( mi + 2*levelDiff ) ) {
+		rgb[0] = 181/255 + randomColorVariation( 6 );
+		rgb[1] = 186/255 + randomColorVariation( 6 );
+		rgb[2] = 97/255 + randomColorVariation( 6 );
+	}
+	if ( height >= ( mi + 2*levelDiff ) && height < ( mi + 3*levelDiff ) ) {
+		rgb[0] = 124/255 + randomColorVariation( 6 );
+		rgb[1] = 141/255 + randomColorVariation( 6 );
+		rgb[2] = 76/255 + randomColorVariation( 6 );
+	}
+	if ( height >= ( mi + 3*levelDiff ) && ( mi + 4*levelDiff ) ) {
+		rgb[0] = 114/255 + randomColorVariation( 9 );
+		rgb[1] = 84/255 + randomColorVariation( 9 );
+		rgb[2] = 40/255 + randomColorVariation( 9 );
+	}
+	if ( height >= ( mi + 4*levelDiff ) && height < ma ) {
+		rgb[0] = 229/255 + randomColorVariation( 9 );;
+		rgb[1] = 217/255 + randomColorVariation( 9 );;
+		rgb[2] = 219/255 + randomColorVariation( 9 );;
+	}
+	
+	return rgb;
+}
 
-function terrain(url, depth){
+function randomColorVariation( randomness ) {
+	return Math.random() / randomness;
+}
+function terrain(url, t_url, depth){
 	var terrain = new planeModel( depth )
-
+	
 	var canvas = document.createElement('canvas');
 	var img = new Image();
 	img.crossOrigin = "Anonymous";
@@ -147,6 +170,8 @@ function terrain(url, depth){
 		var context = canvas.getContext('2d');
 		context.drawImage(img, 0, 0);
 		var ctx = canvas.getContext('2d');
+		var max = 0;
+		var min = 100000;
 		for(var i=0; i<terrain.vertices.length; i+=3){
 			var x = ((terrain.vertices[i]+1)/2)*256;
 			if(x==256) x = 255;
@@ -155,69 +180,33 @@ function terrain(url, depth){
 			var rgba = ctx.getImageData(x, y, 1, 1).data;
 			var height = (-1000 + ((rgba[0] * 256 * 256 + rgba[1] * 256 + rgba[2]) * 0.1));
 			terrain.vertices[i+1] = height;
-			rgb = colorMap(height);
-			terrain.colors[i] = rgb[0];
-			terrain.colors[i+1] = rgb[1];
-			terrain.colors[i+2] = rgb[2];
+			// rgb = colorMap(height);
+			// terrain.colors[i] = rgb[0];
+			// terrain.colors[i+1] = rgb[1];
+			// terrain.colors[i+2] = rgb[2];
 			if(height>max) max = height;
 			if(height<min) min = height;
 		}
 		var diff = max-min;
 		for(var i=0; i<terrain.vertices.length; i+=3){
-			terrain.vertices[i+1] = (terrain.vertices[i+1]-min)/diff;
+			if(diff == 0){
+				rgb = colorMap(terrain.vertices[i+1], min, max);
+				terrain.colors[i] = rgb[0];
+				terrain.colors[i+1] = rgb[1];
+				terrain.colors[i+2] = rgb[2];
+				terrain.vertices[i+1] = 0;
+			}else{
+				rgb = colorMap(terrain.vertices[i+1], min, max);
+				terrain.colors[i] = rgb[0];
+				terrain.colors[i+1] = rgb[1];
+				terrain.colors[i+2] = rgb[2];
+				terrain.vertices[i+1] = (terrain.vertices[i+1]-min)/diff;
+			}
 		}
-		console.log(min);
-		console.log(max);
+		//console.log(min);
+		//console.log(max);
 		computeVertexNormals( terrain.vertices, terrain.normals );
 	}
 	img.src = url;
 	return terrain;
 }
-
-function colorMap( height ) {
-	var levelDiff = ( max - min ) / 5;
-	var waterLevel = ( max - min ) / 15;
-
-    if ( height >= min && height < ( min + waterLevel ) ) {
-		rgb[0] = 182/255 + randomColorVariation( 8 );
-		rgb[1] = 227/255 + randomColorVariation( 8 );
-		rgb[2] = 219/255 + randomColorVariation( 8 );
-	}
-	if ( height >= ( min + waterLevel ) && height < ( min + 2*levelDiff ) ) {
-		rgb[0] = 181/255 + randomColorVariation( 6 );
-		rgb[1] = 186/255 + randomColorVariation( 6 );
-		rgb[2] = 97/255 + randomColorVariation( 6 );
-	}
-	if ( height >= ( min + 2*levelDiff ) && height < ( min + 3*levelDiff ) ) {
-		rgb[0] = 124/255 + randomColorVariation( 6 );
-		rgb[1] = 141/255 + randomColorVariation( 6 );
-		rgb[2] = 76/255 + randomColorVariation( 6 );
-	}
-	if ( height >= ( min + 3*levelDiff ) && ( min + 4*levelDiff ) ) {
-		rgb[0] = 114/255 + randomColorVariation( 9 );
-		rgb[1] = 84/255 + randomColorVariation( 9 );
-		rgb[2] = 40/255 + randomColorVariation( 9 );
-	}
-	if ( height >= ( min + 4*levelDiff ) && height < max ) {
-		rgb[0] = 229/255 + randomColorVariation( 9 );;
-		rgb[1] = 217/255 + randomColorVariation( 9 );;
-		rgb[2] = 219/255 + randomColorVariation( 9 );;
-	}
-
-	return rgb;
-}
-
-function randomColorVariation( randomness ) {
-	return Math.random() / randomness;
-  }
-
-//  Instantiating scene models
-//
-
-var sceneModels = [];
-
-// Model 1 --- Middle
-
-sceneModels.push( new terrain( inUseURL + key, meshDepth ) );
-
-sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;

@@ -78,9 +78,7 @@ function setEventListeners( canvas ){
 		if(!(meshDepth<1)){
 			meshDepth -= 1;
 		
-			sceneModels[0] = new terrain( inUseURL + key, meshDepth )
-		
-			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+			map();
 		}
 	};
 
@@ -89,9 +87,7 @@ function setEventListeners( canvas ){
 		if(!(meshDepth>7)){
 			meshDepth += 1;
 		
-			sceneModels[0] = new terrain( inUseURL + key, meshDepth )
-		
-			sceneModels[0].sx = sceneModels[0].sy = sceneModels[0].sz = 0.5;
+			map();
 		}
 	};
 
