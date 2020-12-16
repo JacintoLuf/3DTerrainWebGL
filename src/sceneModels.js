@@ -75,7 +75,7 @@ function emptyModelFeatures() {
 	
 	this.kAmbi = [ 0.16, 0.10, 0.02 ];
 	
-	this.kDiff = [ 0.5, 0.5, 0.5 ];
+	this.kDiff = [ 0.1, 0.1, 0.1 ];
 
 	this.kSpec = [ 0.4, 0.4, 0.4 ];
 
@@ -127,35 +127,35 @@ function colorMap( height, mi, ma ) {
 	var waterLevel = ( ma - mi ) / 15;
 	
     if ( height >= mi && height < ( mi + waterLevel ) ) {
-		rgb[0] = 182/255 + randomColorVariation( 8 );
-		rgb[1] = 227/255 + randomColorVariation( 8 );
-		rgb[2] = 219/255 + randomColorVariation( 8 );
+		rgb[0] = 182/255 - randomColorVariation( 8 );
+		rgb[1] = 227/255 - randomColorVariation( 8 );
+		rgb[2] = 219/255 - randomColorVariation( 8 );
 	}
 	if ( height >= ( mi + waterLevel ) && height < ( mi + 2*levelDiff ) ) {
-		rgb[0] = 181/255 + randomColorVariation( 6 );
-		rgb[1] = 186/255 + randomColorVariation( 6 );
-		rgb[2] = 97/255 + randomColorVariation( 6 );
+		rgb[0] = 181/255 - randomColorVariation(  );
+		rgb[1] = 186/255 - randomColorVariation(  );
+		rgb[2] = 97/255 - randomColorVariation(  );
 	}
 	if ( height >= ( mi + 2*levelDiff ) && height < ( mi + 3*levelDiff ) ) {
-		rgb[0] = 124/255 + randomColorVariation( 6 );
-		rgb[1] = 141/255 + randomColorVariation( 6 );
-		rgb[2] = 76/255 + randomColorVariation( 6 );
+		rgb[0] = 124/255 - randomColorVariation(  );
+		rgb[1] = 141/255 - randomColorVariation(  );
+		rgb[2] = 76/255 - randomColorVariation(  );
 	}
 	if ( height >= ( mi + 3*levelDiff ) && ( mi + 4*levelDiff ) ) {
-		rgb[0] = 114/255 + randomColorVariation( 9 );
-		rgb[1] = 84/255 + randomColorVariation( 9 );
-		rgb[2] = 40/255 + randomColorVariation( 9 );
+		rgb[0] = 114/255 - randomColorVariation(  );
+		rgb[1] = 84/255 - randomColorVariation(  );
+		rgb[2] = 40/255 - randomColorVariation(  );
 	}
 	if ( height >= ( mi + 4*levelDiff ) && height < ma ) {
-		rgb[0] = 229/255 + randomColorVariation( 9 );;
-		rgb[1] = 217/255 + randomColorVariation( 9 );;
-		rgb[2] = 219/255 + randomColorVariation( 9 );;
+		rgb[0] = 229/255 - randomColorVariation(  );;
+		rgb[1] = 217/255 - randomColorVariation(  );;
+		rgb[2] = 219/255 - randomColorVariation(  );;
 	}
 	
 	return rgb;
 }
 
-function randomColorVariation( randomness ) {
+function randomColorVariation( ) {
 	return Math.random() / randomness;
 }
 function terrain(url, t_url, depth){

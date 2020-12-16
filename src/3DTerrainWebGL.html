@@ -253,86 +253,91 @@ The fragment shader is the same simple one.
 
 </head>
 
-<body onload="runWebGL();">
+<body style="background-color:rgb(135, 206, 235);" onload="runWebGL();">
 
 	<div style="text-align: center">
 		
-		<canvas id="my-canvas" style="border:1px solid #000000;" width="512" height="512" src="/images/clouds.jpeg"></canvas>
+		<canvas id="my-canvas" width="512" height="512"></canvas>
 		
 		<!-- NEW --- To show the number of frames per second -->
 
-		<p id="fps"> fps: </p>
+		<div id="wrapper">
 
-		<p>zoom: <a id="zoom"></a></p>
-
-		<p>XX rotation: 
+			<div style="position: absolute; left: 10px; top: 10px; width:200px; height:500px;">
 			
-		<button id="XX-on-off-button">On / Off</button>
+				<div class="slidecontainer">
+					<p>Mesh depth</p>
 
-	    <button id="XX-direction-button">Change Direction</button>
+					<input type="range" min="1" max="7" value="5" class="slider" id="rec-depth-slider">
 
-	    <button id="XX-slower-button">Slower</button>
+					<p>Color variation</p>
 
-	    <button id="XX-faster-button">Faster</button>
-
-		</p>
+					<input type="range" min="1" max="20" value="20" class="slider" id="color-variation-slider">
 		
-		<p>YY rotation: 
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="right-side-menu">
+
+			<div style="position: absolute; right: 10px; top: 10px; width:100px; height:100px;">
+	
+				<p id="fps"> fps: </p>
+
+				<p>zoom: <a id="zoom"></a></p>
+
+			</div>
+
+		</div>
+
+		<div id="wrapper">
+
+			<div style="position: absolute; left: 10px; bottom: 10px; width:450px; height:150px;">
 			
-		<button id="YY-on-off-button">On / Off</button>
-
-	    <button id="YY-direction-button">Change Direction</button>
-
-	    <button id="YY-slower-button">Slower</button>
-
-	    <button id="YY-faster-button">Faster</button>
-
-		</p>
+				<p>Choose the <b>projection type</b>:
 		
-		<p>ZZ rotation: 
+					<select id="projection-selection">
+						<option value="0">Orthogonal Projection</option>
+						<option value="1">Perspective Projection</option>
+					</select>
+						
+					</p>
+						
+					<p>Choose the <b>rendering mode</b>:
+					 
+					<select id="rendering-mode-selection">
+						<option value="0">Filled Triangles</option>
+						<option value="1">Wireframe</option>
+						<option value="2">Vertices</option>
+					</select>
+	
+					<p>Sun rotation:
+				
+						<button id="light-1">On / Off</button>
 			
-		<button id="ZZ-on-off-button">On / Off</button>
+					</p>
 
-	    <button id="ZZ-direction-button">Change Direction</button>
+			</div>
+			
+		</div>
+		
+		<!-- <p>Mesh generation, using <b>edge midpoints</b> --- Choose the <b>depth</b>:
 
-	    <button id="ZZ-slower-button">Slower</button>
-
-	    <button id="ZZ-faster-button">Faster</button>
-
-		</p>
-		
-		<p>Choose the <b>projection type</b>:
-		
-        <select id="projection-selection">
-			<option value="0">Orthogonal Projection</option>
-			<option value="1">Perspective Projection</option>
-        </select>
-        
-        </p>
-        
-        <p>Choose the <b>rendering mode</b>:
-		
-        <select id="rendering-mode-selection">
-			<option value="0">Filled Triangles</option>
-			<option value="1">Wireframe</option>
-			<option value="2">Vertices</option>
-		</select>
-		
-		<p>Mesh generation, using <b>edge midpoints</b> --- Choose the <b>depth</b>:
-            
 			<button id="rec-depth-sub-button">-</button>
 			
 			<button id="rec-depth-add-button">+</button>
 			
-		</p>
+		</p> -->
 
-		<p>Chose your light:
+		<!-- <p>Color variation:
             
-			<button id="light-1">Simulate sun rotation</button>
+			<button id="more-variation">+</button>
 			
-			<button id="light-2">Only test</button>
+			<button id="less-variation">-</button>
 
-		</p>
+		</p> -->
         				
 	</div>
 

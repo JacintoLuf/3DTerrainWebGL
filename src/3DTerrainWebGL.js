@@ -38,6 +38,10 @@ var globalTz = 0.0;
 
 var meshDepth = 5;
 
+// Color variation
+
+var randomness = 14;
+
 // GLOBAL Animation controls
 
 var globalRotationYY_ON = 0;
@@ -170,6 +174,20 @@ function animate() {
 		
 				lightSources[i].setRotAngleYY( angle );
 			}
+
+			if( lightSources[i].isRotZZOn() ) {
+
+				var angle = lightSources[i].getRotAngleZZ() + lightSources[i].getRotationSpeed() * (90 * elapsed) / 1000.0;
+		
+				lightSources[i].setRotAngleZZ( angle );
+			}
+
+			if( lightSources[i].isRotXXOn() ) {
+
+				var angle = lightSources[i].getRotAngleXX() + lightSources[i].getRotationSpeed() * (90 * elapsed) / 1000.0;
+		
+				lightSources[i].setRotAngleXX( angle );
+			}
 		}
 }
 	
@@ -263,6 +281,9 @@ function runWebGL() {
 	var canvas = document.getElementById("my-canvas");
 	//canvas.width = document.body.clientWidth;
 	//canvas.height = document.body.clientHeight;
+
+	canvas.width  = window.innerWidth;
+	canvas.height = window.innerHeight;
 	
 	initWebGL( canvas );
 

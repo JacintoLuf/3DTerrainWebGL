@@ -8,7 +8,11 @@ function drawScene() {
 
 	// Clear color to black
 
+	//gl.clearColor(1.0, 1.0, 1.0, 1.0)
+
 	gl.clearColor(0.53, 0.81, 0.92, 1.0)
+
+	// gl.clearColor(0.71, 0.9, 0.86, 1.0)
 	
 	// Clearing the frame-buffer and the depth-buffer
 	
@@ -95,6 +99,18 @@ function drawScene() {
 				lightSourceMatrix = mult( 
 						lightSourceMatrix, 
 						rotationYYMatrix( lightSources[i].getRotAngleYY() ) );
+			}
+			if( lightSources[i].isRotXXOn() ) 
+			{
+				lightSourceMatrix = mult( 
+						lightSourceMatrix, 
+						rotationXXMatrix( lightSources[i].getRotAngleXX() ) );
+			}
+			if( lightSources[i].isRotZZOn() ) 
+			{
+				lightSourceMatrix = mult( 
+						lightSourceMatrix, 
+						rotationZZMatrix( lightSources[i].getRotAngleZZ() ) );
 			}
 		}
 		
